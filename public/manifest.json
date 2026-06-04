@@ -1,0 +1,16 @@
+{
+  "name": "Honey Bloom Beauty",
+  "short_name": "Honey Bloom",
+  "description": "Beauty salon and medical esthetician studio for brows, lashes, skincare, waxing, threading, tinting, and henna services.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff9f0",
+  "theme_color": "#4f154d",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

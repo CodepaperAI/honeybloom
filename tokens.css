@@ -1,0 +1,64 @@
+/* Hallmark tokens · project: Honey Bloom Beauty · theme: custom plum bloom · anchor hue: magenta-plum */
+:root {
+  --color-paper: oklch(98% 0.014 80);
+  --color-paper-deep: oklch(93% 0.032 77);
+  --color-surface: oklch(99% 0.007 82);
+  --color-surface-strong: oklch(96% 0.027 75);
+  --color-ink: oklch(22% 0.036 165);
+  --color-muted: oklch(48% 0.04 157);
+  --color-soft: oklch(74% 0.044 84);
+  --color-plum: oklch(37% 0.12 318);
+  --color-plum-strong: oklch(28% 0.105 318);
+  --color-orchid: oklch(55% 0.14 326);
+  --color-blush: oklch(88% 0.055 12);
+  --color-honey: oklch(78% 0.13 74);
+  --color-emerald: oklch(38% 0.095 170);
+  --color-emerald-strong: oklch(28% 0.075 170);
+  --color-emerald-soft: oklch(87% 0.056 157);
+  --color-sage: oklch(69% 0.058 134);
+  --color-black-panel: oklch(16% 0.035 165);
+  --color-line: oklch(87% 0.025 83);
+  --color-focus: oklch(67% 0.13 75);
+  --font-display: var(--next-font-display), Cambria, "Hoefler Text", "Palatino Linotype";
+  --font-body: var(--next-font-body), "Segoe UI", Helvetica, Arial, sans-serif;
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+  --text-xs: 0.78rem;
+  --text-sm: 0.9rem;
+  --text-base: 1rem;
+  --text-md: 1.12rem;
+  --text-lg: 1.35rem;
+  --text-xl: 1.75rem;
+  --text-2xl: 2.25rem;
+  --text-3xl: 3.15rem;
+  --text-hero: 3.4rem;
+  --leading-tight: 1.02;
+  --leading-heading: 1.14;
+  --leading-body: 1.7;
+  --radius-card: 8px;
+  --radius-pill: 999px;
+  --rule-thin: 1px;
+  --dur-fast: 160ms;
+  --dur-med: 260ms;
+  --dur-slow: 420ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --shadow-soft: 0 18px 55px color-mix(in oklch, var(--color-emerald) 13%, transparent);
+  --shadow-card: 0 12px 35px color-mix(in oklch, var(--color-ink) 8%, transparent);
+  --shadow-lift: 0 18px 42px color-mix(in oklch, var(--color-emerald) 16%, transparent);
+}
+
+@media (min-width: 900px) {
+  :root {
+    --text-hero: 5.4rem;
+    --text-3xl: 4rem;
+  }
+}

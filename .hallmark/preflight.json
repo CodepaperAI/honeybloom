@@ -1,0 +1,8 @@
+{
+  "date": "2026-06-02",
+  "fontStack": "Abhaya Libre 700 + Montserrat 400 via next/font/google",
+  "palette": "Custom plum, blush, ivory, honey, emerald, and black-panel tokens",
+  "motion": "CSS shimmer/marquee plus lottie-react bloom animation",
+  "spacing": "4/8pt CSS custom property scale in tokens.css",
+  "framework": "Next.js app router"
+}

@@ -52,7 +52,7 @@ export function GalleryGrid() {
   return (
     <div className="gallery-grid">
       {galleryItems.map((item) => (
-        <figure className={item.className} key={item.caption}>
+        <figure className={["gallery-item", item.className].filter(Boolean).join(" ")} key={item.caption}>
           <Image
             src={item.src}
             alt={item.alt}

@@ -18,10 +18,6 @@ export default function GalleryPage() {
       <section className="page-hero">
         <p className="eyebrow">Gallery</p>
         <h1>Service visuals and Honey Bloom Beauty details.</h1>
-        <p>
-          Browse treatment-inspired photography, Honey Bloom Beauty flyer details, service menu imagery, and visual
-          direction for brows, lashes, skincare, threading, and henna.
-        </p>
       </section>
 
       <section className="section gallery-section">

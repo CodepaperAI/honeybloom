@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Mail, Phone } from "lucide-react";
 import { ContactBlock } from "@/components/ContactBlock";
+import { ContactForm } from "@/components/ContactForm";
 import { contact, stockPhotos } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -16,35 +17,26 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main id="main">
-      <section className="page-hero">
-        <p className="eyebrow">Contact us</p>
-        <h1>Your beauty appointment starts here.</h1>
-        <p>
-          Call, email, or visit by appointment to discuss microshading, ombre brows, lash lifts, facials, waxing,
-          threading, tinting, henna, and beauty consultations.
-        </p>
-      </section>
-
-      <section className="section contact-section">
-        <div className="contact-copy">
-          <p className="eyebrow">Honey Bloom Beauty</p>
-          <h2>Reach the studio directly.</h2>
-          <p>
-            Appointments can be requested by phone at {contact.phone} or email at {contact.email}. Call before visiting
-            to confirm availability.
-          </p>
-          <div className="contact-actions">
-            <a className="button button-primary shimmer-button" href={contact.phoneHref}>
-              <Phone aria-hidden="true" size={18} />
-              Call now
-            </a>
-            <a className="button button-secondary" href={`mailto:${contact.email}`}>
-              <Mail aria-hidden="true" size={18} />
-              Email studio
-            </a>
+      <section className="section contact-studio-layout">
+        <div className="contact-details-panel">
+          <div className="contact-copy">
+            <p className="eyebrow">Honey Bloom Beauty</p>
+            <h2>Reach the studio directly.</h2>
+            <p>
+              Appointments can be requested by phone at {contact.phone} or email at {contact.email}. Call before visiting
+              to confirm availability.
+            </p>
+            <div className="contact-actions">
+              <a className="button button-primary shimmer-button" href={contact.phoneHref}>
+                <Phone aria-hidden="true" size={18} />
+                Call now
+              </a>
+              <a className="button button-secondary" href={`mailto:${contact.email}`}>
+                <Mail aria-hidden="true" size={18} />
+                Email studio
+              </a>
+            </div>
           </div>
-        </div>
-        <div className="contact-stack">
           <figure className="contact-photo-card">
             <Image
               src={stockPhotos.henna.src}
@@ -56,6 +48,9 @@ export default function ContactPage() {
             />
           </figure>
           <ContactBlock />
+        </div>
+        <div className="contact-form-panel">
+          <ContactForm />
         </div>
       </section>
     </main>

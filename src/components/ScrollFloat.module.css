@@ -1,0 +1,14 @@
+.scrollFloat {
+  overflow: hidden;
+  padding-block: 0.06em;
+}
+
+.scrollFloatText {
+  display: inline-block;
+  text-align: inherit;
+}
+
+.char {
+  display: inline-block;
+}
+

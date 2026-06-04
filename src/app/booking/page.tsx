@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BookingBand } from "@/components/BookingBand";
+import { BookingPlanner } from "@/components/BookingPlanner";
 import { ContactBlock } from "@/components/ContactBlock";
 import { appointmentNotes, bookingSteps, contact } from "@/lib/site";
 
@@ -16,18 +17,13 @@ export const metadata: Metadata = {
 export default function BookingPage() {
   return (
     <main id="main">
-      <section className="page-hero">
-        <p className="eyebrow">Booking information</p>
-        <h1>Plan your beauty visit with confidence.</h1>
-        <p>
-          Honey Bloom Beauty operates by appointment. Call or email to discuss your service, availability, and treatment
-          goals before visiting.
-        </p>
+      <section className="section booking-planner-section">
+        <BookingPlanner />
       </section>
 
       <BookingBand />
 
-      <section className="section split-section">
+      <section className="section split-section booking-steps-section">
         <div>
           <p className="eyebrow">How it works</p>
           <h2>Simple steps before your appointment.</h2>

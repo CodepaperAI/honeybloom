@@ -18,10 +18,7 @@ export default function TestimonialsPage() {
       <section className="page-hero">
         <p className="eyebrow">Testimonials</p>
         <h1>Client feedback, handled with care.</h1>
-        <p>
-          A calm, professional beauty experience shaped around careful consultations, clean details, and natural-looking
-          results.
-        </p>
+        
       </section>
 
       <section className="section">

@@ -35,16 +35,8 @@ export default function ServicesPage() {
   return (
     <main id="main">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesJsonLd) }} />
-      <section className="page-hero">
-        <p className="eyebrow">Services</p>
-        <h1>Brow, lash, skincare, waxing, threading, tinting, and henna services.</h1>
-        <p>
-          Browse Honey Bloom Beauty treatment categories and pricing, then contact the studio for appointment
-          availability and personalized guidance.
-        </p>
-      </section>
 
-      <section className="section">
+      <section className="section services-overview-section">
         <div className="section-heading">
           <p className="eyebrow">Treatment categories</p>
           <h2>Beauty treatments with a precise, personal touch.</h2>

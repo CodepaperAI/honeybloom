@@ -16,16 +16,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main id="main">
-      <section className="page-hero">
-        <p className="eyebrow">About us</p>
-        <h1>Personalized beauty care with a careful hand.</h1>
-        <p>
-          Honey Bloom Beauty is a professional beauty salon and medical esthetician studio focused on brow artistry,
-          skincare, lash services, hair removal, tinting, henna, and beauty maintenance.
-        </p>
-      </section>
-
-      <section className="section split-section image-split">
+      <section className="section split-section image-split about-editorial-section">
         <div>
           <p className="eyebrow">Owner</p>
           <h2>Led by {contact.owner}.</h2>

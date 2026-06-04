@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CalendarCheck, ListChecks, Mail, Star } from "lucide-react";
 import { BloomLottie } from "@/components/BloomLottie";
 import { BookingBand } from "@/components/BookingBand";
+import { ScrollFloat } from "@/components/ScrollFloat";
 import { ServiceCards } from "@/components/ServiceCards";
 import { ServiceRibbon } from "@/components/ServiceRibbon";
 import { TestimonialsGrid } from "@/components/TestimonialsGrid";
@@ -100,7 +101,9 @@ export default function Home() {
       <section className="section">
         <div className="section-heading">
           <p className="eyebrow">Services</p>
-          <h2>Beauty treatments with a precise, personal touch.</h2>
+          <ScrollFloat animationDuration={0.9} ease="back.out(1.7)" scrollStart="top bottom-=8%" scrollEnd="center center" stagger={0.018}>
+            Beauty treatments with a precise, personal touch.
+          </ScrollFloat>
           <p>Explore signature brow, lash, skin, waxing, threading, tinting, and henna services.</p>
         </div>
         <ServiceCards />
@@ -116,7 +119,9 @@ export default function Home() {
       <section className="section testimonials-section">
         <div className="section-heading">
           <p className="eyebrow">Client stories</p>
-          <h2>Clients come in for detail and leave feeling polished.</h2>
+          <ScrollFloat animationDuration={0.85} ease="back.out(1.45)" scrollStart="top bottom-=10%" scrollEnd="center center" stagger={0.014}>
+            Clients come in for detail and leave feeling polished.
+          </ScrollFloat>
           <p>Warm, detail-focused beauty care for brows, lashes, skincare, waxing, threading, and henna.</p>
         </div>
         <TestimonialsGrid limit={3} />

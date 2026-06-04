@@ -5,7 +5,9 @@ export function FaqList() {
     <div className="faq-list">
       {faqs.map((faq) => (
         <details key={faq.question}>
-          <summary>{faq.question}</summary>
+          <summary>
+            <span>{faq.question}</span>
+          </summary>
           <p>{faq.answer}</p>
         </details>
       ))}

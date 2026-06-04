@@ -56,6 +56,28 @@
   --shadow-lift: 0 18px 42px color-mix(in oklch, var(--color-emerald) 16%, transparent);
 }
 
+@media (max-width: 680px) {
+  :root {
+    --space-3xl: 3rem;
+    --space-4xl: 4rem;
+    --text-md: 1.04rem;
+    --text-lg: 1.22rem;
+    --text-3xl: 2.45rem;
+    --text-hero: 2.85rem;
+  }
+}
+
+@media (max-width: 520px) {
+  :root {
+    --space-2xl: 2.25rem;
+    --space-3xl: 2.75rem;
+    --space-4xl: 3.25rem;
+    --text-md: 1rem;
+    --text-3xl: 2.15rem;
+    --text-hero: 2.5rem;
+  }
+}
+
 @media (min-width: 900px) {
   :root {
     --text-hero: 5.4rem;

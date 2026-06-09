@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     "Brow Specialist",
     "Mississauga beauty salon",
   ],
-  authors: [{ name: "Mohinina Parmar", url: siteUrl }],
+  authors: [{ name: "Honey Bloom Beauty", url: siteUrl }],
   creator: "Honey Bloom Beauty",
   publisher: "Honey Bloom Beauty",
   alternates: {

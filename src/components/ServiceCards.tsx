@@ -15,8 +15,11 @@ export function ServiceCards({ limit }: { limit?: number }) {
       {services.slice(0, limit).map((service) => {
         const Icon = icons[service.icon as keyof typeof icons];
         return (
-          <article className="service-card" key={service.title}>
+          <article className={["service-card", service.featured && "service-card-featured"].filter(Boolean).join(" ")} key={service.title}>
             <figure className="service-card-media">
+              {service.tag && (
+                <span className="service-card-tag">{service.tag}</span>
+              )}
               <Image
                 src={service.image}
                 alt={service.imageAlt}

@@ -7,7 +7,7 @@ import { contact, promises, stockPhotos } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about Honey Bloom Beauty, a professional Mississauga beauty salon and medical esthetician studio led by Mohinina Parmar.",
+    "Learn about Honey Bloom Beauty, a professional Mississauga beauty salon and medical esthetician studio led by our Lead Esthetician & Founder.",
   alternates: {
     canonical: "/about",
   },
@@ -18,8 +18,8 @@ export default function AboutPage() {
     <main id="main">
       <section className="section split-section image-split about-editorial-section">
         <div>
-          <p className="eyebrow">Owner</p>
-          <h2>Led by {contact.owner}.</h2>
+          <p className="eyebrow">Founder</p>
+          <h2>Led by our {contact.owner}.</h2>
           <figure className="section-photo">
             <Image src={stockPhotos.spa.src} alt={stockPhotos.spa.alt} width={900} height={680} sizes="(max-width: 900px) 100vw, 38vw" />
           </figure>

@@ -37,7 +37,7 @@ export default function ServicesPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesJsonLd) }} />
 
       <section className="section services-overview-section">
-        <div className="section-heading">
+        <div className="section-heading services-heading-wide">
           <p className="eyebrow">Treatment categories</p>
           <h2>Beauty treatments with a precise, personal touch.</h2>
         </div>

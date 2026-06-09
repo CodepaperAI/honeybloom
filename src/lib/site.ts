@@ -2,8 +2,8 @@ export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://honeybloombe
 
 export const contact = {
   businessName: "Honey Bloom Beauty",
-  owner: "Mohinina Parmar",
-  email: "parmar.mohiniba@gmail.com",
+  owner: "Lead Esthetician & Founder",
+  email: "honeybloombeauty9@gmail.com",
   phone: "(437) 771-6094",
   phoneHref: "tel:+14377716094",
   address: "50 Sussex Gate, unit #102, Mississauga, ON L5B 3Y5",
@@ -30,16 +30,16 @@ export const stockPhotos = {
     alt: "Woman relaxing during a professional facial treatment with a towel wrap",
   },
   brow: {
-    src: "/images/stock-brow-styling.webp",
-    alt: "Close-up eyebrow styling treatment in a professional beauty salon",
+    src: "/images/micro_shading.jpg",
+    alt: "Professional eyebrow microshading and ombre brow styling",
   },
   threading: {
     src: "/images/stock-threading.webp",
     alt: "Professional eyebrow threading service performed with precise detail",
   },
   lashes: {
-    src: "/images/stock-lash-application.webp",
-    alt: "Close-up lash enhancement treatment in a beauty studio",
+    src: "/images/lash_lift.jpg",
+    alt: "Professional lash lift and tint enhancement",
   },
   henna: {
     src: "/images/stock-henna-application.webp",
@@ -82,6 +82,17 @@ export const services = [
     imageAlt: stockPhotos.facial.alt,
     bestFor: "Glow maintenance, hydration, texture, acne support",
     time: "Usually 45-75 minutes",
+  },
+  {
+    title: "Nufree Waxing",
+    text: "A professional, soy-based, antimicrobial liquid hair removal system that is gentle, clean, and safe for sensitive skin.",
+    icon: "check",
+    image: "/images/nufree_wax.png",
+    imageAlt: "Professional Nufree waxing service",
+    bestFor: "Sensitive skin, clean hair removal, long-lasting smoothness",
+    time: "Varies by service",
+    tag: "Highly Recommended",
+    featured: true,
   },
   {
     title: "Waxing, Threading & Henna",
@@ -139,15 +150,25 @@ export const menuGroups = [
     ],
   },
   {
-    title: "Waxing",
+    title: "Regular Waxing",
     items: [
       ["Regular Full Body Wax", "$110"],
-      ["Nufree Full Body Wax", "$155"],
       ["Full Legs", "$35-$45"],
       ["Underarms", "$15-$20"],
       ["Brazilian", "$40-$45"],
       ["Eyebrows", "$10-$12"],
       ["Upper Lips", "$5-$7"],
+    ],
+  },
+  {
+    title: "Nufree Waxing",
+    items: [
+      ["Nufree Full Body Wax", "$155"],
+      ["Full Legs", "$45-$55"],
+      ["Underarms", "$20-$25"],
+      ["Brazilian", "$50-$55"],
+      ["Eyebrows", "$15-$18"],
+      ["Upper Lips", "$8-$10"],
     ],
   },
   {
@@ -189,7 +210,7 @@ export const faqs = [
   },
   {
     question: "How do I book an appointment?",
-    answer: "Appointments can be requested by phone at (437) 771-6094 or by email at parmar.mohiniba@gmail.com.",
+    answer: "Appointments can be requested by phone at (437) 771-6094 or by email at honeybloombeauty9@gmail.com.",
   },
   {
     question: "Which services are available at Honey Bloom Beauty?",
@@ -204,7 +225,7 @@ export const faqs = [
   {
     question: "Where is Honey Bloom Beauty located?",
     answer:
-      "The flyer lists Honey Bloom Beauty at 50 Sussex Gate, unit #102, Mississauga, ON L5B 3Y5. Call before visiting to confirm appointment availability.",
+      "We are located at Honey Bloom Beauty, 50 Sussex Gate, unit #102, Mississauga, ON L5B 3Y5. Please call before visiting to confirm appointment availability.",
   },
 ];
 
@@ -270,6 +291,13 @@ export const galleryStories = [
     image: stockPhotos.lashes.src,
     imageAlt: stockPhotos.lashes.alt,
     description: "A low-maintenance lash result designed for definition, curl, and a softer daily routine.",
+  },
+  {
+    title: "Gentle soy-based waxing care",
+    service: "Nufree Waxing",
+    image: "/images/nufree_wax.png",
+    imageAlt: "Smooth skin hair removal result using Nufree",
+    description: "A gentle hair removal session using the antimicrobial, soy-based Nufree system, ideal for sensitive skin.",
   },
   {
     title: "Event-ready henna details",

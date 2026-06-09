@@ -1,6 +1,11 @@
+"use client";
+
+import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, Phone } from "lucide-react";
 import { contact, navigation } from "@/lib/site";
+import logoImg from "../../public/images/logo.png";
 
 const LogoFlowerIcon = () => (
   <svg
@@ -17,15 +22,23 @@ const LogoFlowerIcon = () => (
 );
 
 export function SiteHeader() {
+  const detailsRef = useRef<HTMLDetailsElement>(null);
+
+  const closeMenu = () => {
+    if (detailsRef.current) {
+      detailsRef.current.removeAttribute("open");
+    }
+  };
+
   return (
     <header className="site-header theme-header" aria-label="Honey Bloom Beauty site header">
       <Link className="brand theme-brand" href="/" aria-label="Honey Bloom Beauty home">
-        <span className="brand-logo-wrapper" style={{ display: "flex", alignItems: "center" }}>
-          <LogoFlowerIcon />
-          <span className="brand-text" style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.1rem", letterSpacing: "0.05em", color: "var(--color-emerald-strong)", textTransform: "uppercase" }}>
-            HONEY BLOOM BEAUTY
-          </span>
-        </span>
+        <Image
+          src={logoImg}
+          alt="Honey Bloom Beauty"
+          style={{ height: "58px", width: "auto", display: "block" }}
+          priority
+        />
       </Link>
       <nav className="nav-links theme-nav-links" aria-label="Primary navigation">
         {navigation.map((item) => (
@@ -35,14 +48,14 @@ export function SiteHeader() {
         ))}
       </nav>
       <div className="header-actions theme-header-actions">
-        <details className="mobile-menu theme-mobile-menu">
+        <details ref={detailsRef} className="mobile-menu theme-mobile-menu">
           <summary aria-label="Open site navigation">
             <Menu aria-hidden="true" size={19} />
             <span>Menu</span>
           </summary>
           <nav aria-label="Mobile navigation">
             {navigation.map((item) => (
-              <Link key={item.href} href={item.href}>
+              <Link key={item.href} href={item.href} onClick={closeMenu}>
                 {item.label}
               </Link>
             ))}

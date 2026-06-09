@@ -38,11 +38,32 @@ export function ScrollFloat({
       return children;
     }
 
-    return text.split("").map((char, index) => (
-      <span aria-hidden="true" className={styles.char} key={`${char}-${index}`}>
-        {char === " " ? "\u00A0" : char}
-      </span>
-    ));
+    const words = text.split(" ");
+    let charIndex = 0;
+
+    const elements: ReactNode[] = [];
+    words.forEach((word, wordIdx) => {
+      const chars = word.split("").map((char) => {
+        const key = `${char}-${charIndex++}`;
+        return (
+          <span aria-hidden="true" className={styles.char} key={key}>
+            {char}
+          </span>
+        );
+      });
+
+      elements.push(
+        <span key={`word-${wordIdx}`} style={{ display: "inline-block", whiteSpace: "nowrap" }}>
+          {chars}
+        </span>
+      );
+
+      if (wordIdx < words.length - 1) {
+        elements.push(<span key={`space-${wordIdx}`}>{" "}</span>);
+      }
+    });
+
+    return elements;
   }, [children, text]);
 
   useEffect(() => {

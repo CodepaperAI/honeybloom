@@ -83,7 +83,7 @@ export default function Home() {
         </div>
         <div className="about-copy">
           <p>
-            Led by {contact.owner}, Honey Bloom Beauty is designed for women who value careful detail, professional
+            Led by our {contact.owner}, Honey Bloom Beauty is designed for women who value careful detail, professional
             service, and long-lasting beauty results. Each appointment starts with your brow shape, skin goals,
             preferred finish, and comfort level.
           </p>
@@ -99,7 +99,7 @@ export default function Home() {
       </section>
 
       <section className="section">
-        <div className="section-heading">
+        <div className="section-heading services-heading-wide">
           <p className="eyebrow">Services</p>
           <ScrollFloat animationDuration={0.9} ease="back.out(1.7)" scrollStart="top bottom-=8%" scrollEnd="center center" stagger={0.018}>
             Beauty treatments with a precise, personal touch.

@@ -204,6 +204,19 @@ p {
   letter-spacing: -0.01em;
 }
 
+.brand-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.05em;
+  color: var(--color-emerald-strong);
+  text-transform: uppercase;
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: middle;
+  transition: font-size var(--dur-fast) var(--ease-out);
+}
+
 .brand small {
   color: var(--color-muted);
   font-family: var(--font-body);
@@ -665,6 +678,12 @@ p {
   max-width: 22ch;
 }
 
+.services-heading-wide,
+.services-heading-wide h2,
+.services-heading-wide h2 span {
+  max-width: none !important;
+}
+
 .section-heading p:not(.eyebrow) {
   font-size: var(--text-md);
   line-height: 1.7;
@@ -894,6 +913,22 @@ p {
   aspect-ratio: 4 / 3;
 }
 
+.service-card-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 5;
+  background: var(--color-honey);
+  color: var(--color-emerald-strong);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 10px color-mix(in oklch, var(--color-ink) 10%, transparent);
+}
+
 .service-card-media img {
   width: 100%;
   height: 100%;
@@ -984,6 +1019,25 @@ p {
   border-radius: 18px;
   background: var(--glass-surface);
   box-shadow: var(--shadow-card);
+  transition: all var(--dur-med) var(--ease-out);
+}
+
+.detail-card-featured {
+  border-color: color-mix(in oklch, var(--color-honey) 35%, var(--line-soft)) !important;
+  box-shadow: 0 12px 30px color-mix(in oklch, var(--color-honey) 6%, transparent) !important;
+}
+
+.detail-tag {
+  background: color-mix(in oklch, var(--color-honey) 10%, var(--color-paper));
+  color: color-mix(in oklch, var(--color-honey) 80%, var(--color-emerald-strong));
+  border: 1px solid color-mix(in oklch, var(--color-honey) 30%, transparent);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
 }
 
 .detail-card h3 {
@@ -1166,25 +1220,28 @@ p {
    ========================================================================== */
 
 .gallery-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: var(--space-md);
+  display: block;
+  columns: 1;
+  column-gap: var(--space-md);
 }
 
 .gallery-item {
   position: relative;
   overflow: hidden;
-  margin: 0;
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 var(--space-md) 0;
   border: var(--rule-thin) solid color-mix(in oklch, var(--color-paper) 78%, var(--color-line));
   border-radius: 18px;
   background: color-mix(in oklch, var(--color-paper) 76%, transparent);
   box-shadow: 0 16px 42px color-mix(in oklch, var(--color-ink) 6%, transparent);
-  aspect-ratio: 4 / 3;
+  break-inside: avoid;
 }
 
 .gallery-grid img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  display: block;
   object-fit: cover;
   object-position: center;
   transition: transform var(--dur-slow) var(--ease-out);
@@ -1925,7 +1982,7 @@ p {
   }
 
   .gallery-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    columns: 2;
   }
 
   .testimonial-grid {
@@ -2007,29 +2064,7 @@ p {
 
   /* Gallery Masonry-like Grid */
   .gallery-grid {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    grid-auto-rows: 12.75rem;
-    gap: var(--space-md);
-  }
-
-  .gallery-item {
-    aspect-ratio: auto;
-  }
-
-  .gallery-item:nth-child(1) {
-    grid-column: span 3;
-    grid-row: span 2;
-  }
-
-  .gallery-item:nth-child(2) {
-    grid-column: span 3;
-  }
-
-  .gallery-item:nth-child(3),
-  .gallery-item:nth-child(4),
-  .gallery-item:nth-child(5),
-  .gallery-item:nth-child(6) {
-    grid-column: span 2;
+    columns: 3;
   }
 
   /* Sticky visual element in about editorial */
@@ -2120,7 +2155,11 @@ p {
   }
 
   .brand span:last-child {
-    max-width: 6.8rem;
+    max-width: none;
+  }
+
+  .brand-text {
+    font-size: 0.95rem;
   }
 
   .header-call span {
@@ -2216,7 +2255,11 @@ p {
   }
 
   .brand span:last-child {
-    max-width: 5.8rem;
+    max-width: none;
+  }
+
+  .brand-text {
+    font-size: 0.85rem;
   }
 }
 

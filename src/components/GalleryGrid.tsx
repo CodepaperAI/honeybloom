@@ -39,8 +39,8 @@ export function GalleryGrid() {
       height: 680,
     },
     {
-      src: "/images/stock-lash-application.webp",
-      alt: "Close-up of precise lash enhancement application in a beauty clinic",
+      src: "/images/lash_lift_purple.jpg",
+      alt: "Close-up of precise lash lift and tint application in our salon",
       caption: "Professional lash application",
       width: 900,
       height: 680,

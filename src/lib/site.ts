@@ -6,6 +6,7 @@ export const contact = {
   email: "honeybloombeauty9@gmail.com",
   phone: "(437) 771-6094",
   phoneHref: "tel:+14377716094",
+  whatsAppHref: "https://wa.me/14377716094",
   address: "50 Sussex Gate, unit #102, Mississauga, ON L5B 3Y5",
   shortAddress: "50 Sussex Gate, unit #102",
   city: "Mississauga",
@@ -38,8 +39,12 @@ export const stockPhotos = {
     alt: "Professional eyebrow threading service performed with precise detail",
   },
   lashes: {
-    src: "/images/lash_lift.jpg",
+    src: "/images/lash_lift_new.jpg",
     alt: "Professional lash lift and tint enhancement",
+  },
+  makeup: {
+    src: "/images/makeup_service.jpg",
+    alt: "Professional bridal and event makeup application",
   },
   henna: {
     src: "/images/stock-henna-application.webp",
@@ -103,17 +108,26 @@ export const services = [
     bestFor: "Clean shaping, facial hair removal, event-ready details",
     time: "Varies by service",
   },
+  {
+    title: "Bridal & Event Makeup",
+    text: "Professional makeup application for weddings, parties, and special events, tailored to enhance your features with a flawless, long-lasting finish.",
+    icon: "sparkles",
+    image: stockPhotos.makeup.src,
+    imageAlt: stockPhotos.makeup.alt,
+    bestFor: "Weddings, special events, photoshoot-ready glow, party styling",
+    time: "Usually 60-90 minutes",
+  },
 ];
 
 export const menuGroups = [
   {
     title: "Permanent Make-Up",
     items: [
-      ["Micro Shading", "$250"],
-      ["Powder Brows", "$250"],
-      ["Ombre Brows", "$250"],
-      ["Touch Up", "$150"],
-      ["Micro Shading with Touch-Up", "$350"],
+      ["Micro Shading", "$300"],
+      ["Powder Brows", "$300"],
+      ["Ombre Brows", "$300"],
+      ["Touch Up", "$200"],
+      ["Micro Shading with Touch-Up", "$400"],
     ],
   },
   {
@@ -145,45 +159,48 @@ export const menuGroups = [
       ["Chin / Neck", "$6"],
       ["Cheeks", "$6"],
       ["Forehead", "$5"],
-      ["Sideburns", "$8"],
+      ["Sideburns", "$10"],
       ["Full Face", "$35"],
     ],
   },
   {
     title: "Regular Waxing",
     items: [
-      ["Regular Full Body Wax", "$110"],
-      ["Full Legs", "$35-$45"],
-      ["Underarms", "$15-$20"],
-      ["Brazilian", "$40-$45"],
-      ["Eyebrows", "$10-$12"],
-      ["Upper Lips", "$5-$7"],
+      ["Regular Full Body Wax", "$120"],
+      ["Full Legs", "$35"],
+      ["Full Arms", "$30"],
+      ["Underarms", "$15"],
+      ["Brazilian", "$45"],
+      ["Eyebrows", "$10"],
+      ["Full Face", "$40"],
+      ["Back", "$35"],
     ],
   },
   {
     title: "Nufree Waxing",
     items: [
-      ["Nufree Full Body Wax", "$155"],
-      ["Full Legs", "$45-$55"],
-      ["Underarms", "$20-$25"],
-      ["Brazilian", "$50-$55"],
-      ["Eyebrows", "$15-$18"],
-      ["Upper Lips", "$8-$10"],
+      ["Nufree Full Body Wax", "$200"],
+      ["Full Legs", "$60"],
+      ["Full Arms", "$40"],
+      ["Underarms", "$20"],
+      ["Brazilian", "$55"],
+      ["Eyebrows", "$12"],
+      ["Back", "$60"],
     ],
   },
   {
-    title: "Henna & Make-Up",
+    title: "Henna",
     items: [
-      ["Basic Henna", "$10 & Up"],
-      ["Bridal Henna", "$250 & Up"],
-      ["Party Makeup", "$80"],
+      ["Bridal Henna", "$350 & Up"],
+      ["Party Henna", "$150 & Up"],
     ],
   },
 ];
 
+
 export const bookingSteps = [
   "Choose your brow, lash, facial, waxing, threading, tinting, or henna service.",
-  "Call or email Honey Bloom Beauty to request an appointment time.",
+  "WhatsApp, call, or email Honey Bloom Beauty to request an appointment time.",
   "Arrive for a personalized consultation before your treatment begins.",
 ];
 
@@ -210,7 +227,7 @@ export const faqs = [
   },
   {
     question: "How do I book an appointment?",
-    answer: "Appointments can be requested by phone at (437) 771-6094 or by email at honeybloombeauty9@gmail.com.",
+    answer: "Appointments can be requested by WhatsApp or phone at (437) 771-6094, or by email at honeybloombeauty9@gmail.com.",
   },
   {
     question: "Which services are available at Honey Bloom Beauty?",
@@ -313,7 +330,15 @@ export const galleryStories = [
     imageAlt: stockPhotos.facial.alt,
     description: "A skin-care appointment focused on hydration, refreshed texture, and a comfortable post-facial glow.",
   },
+  {
+    title: "Elegant event makeup look",
+    service: "Makeup Services",
+    image: stockPhotos.makeup.src,
+    imageAlt: stockPhotos.makeup.alt,
+    description: "A natural yet glamorous makeup style designed for a special event, highlighting glowing skin and defined eyes.",
+  },
 ];
+
 
 export const pages = [
   { path: "/", priority: 1 },

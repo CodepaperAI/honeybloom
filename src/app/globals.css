@@ -816,6 +816,21 @@ p {
   border-color: var(--color-paper);
 }
 
+.button-whatsapp {
+  background: #25d366;
+  color: #ffffff;
+  border-color: #25d366;
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.25);
+}
+
+.button-whatsapp:hover {
+  background: #20ba56;
+  border-color: #20ba56;
+  color: #ffffff;
+  box-shadow: 0 14px 30px rgba(37, 211, 102, 0.35);
+}
+
+
 .shimmer-button {
   overflow: hidden;
 }

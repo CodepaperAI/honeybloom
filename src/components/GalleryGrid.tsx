@@ -4,9 +4,9 @@ import { stockPhotos } from "@/lib/site";
 export function GalleryGrid() {
   const galleryItems = [
     {
-      src: "/images/aleks-Wude2F3CMss-unsplash.jpg",
-      alt: "Clean, luxurious esthetician spa room with massage bed and ambient lighting",
-      caption: "Our peaceful treatment space",
+      src: "/images/lash_lift_new.jpg",
+      alt: "Close-up of precise lash lift and tint application in our salon",
+      caption: "Professional lash lift service",
       width: 900,
       height: 680,
     },
@@ -65,6 +65,20 @@ export function GalleryGrid() {
       caption: "Stunning lash enhancement results",
       width: 900,
       height: 680,
+    },
+    {
+      src: "/images/makeup_service.jpg",
+      alt: "Flawless event makeup application by a professional esthetician",
+      caption: "Bridal & Event Makeup service",
+      width: 900,
+      height: 680,
+    },
+    {
+      src: "/images/bridal_makeup_gallery.jpg",
+      alt: "Beautiful bride with elegant crown and bridal makeup",
+      caption: "Stunning bridal makeup",
+      width: 900,
+      height: 1200,
     },
   ];
 

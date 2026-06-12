@@ -55,7 +55,7 @@ export default function ContactPage() {
               src={stockPhotos.henna.src}
               alt={stockPhotos.henna.alt}
               width={900}
-              height={680}
+              height={1125}
               loading="eager"
               sizes="(max-width: 900px) 100vw, 38vw"
             />

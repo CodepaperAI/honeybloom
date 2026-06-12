@@ -4,11 +4,11 @@ import { stockPhotos } from "@/lib/site";
 export function GalleryGrid() {
   const galleryItems = [
     {
-      src: "/images/lash_lift_new.jpg",
-      alt: "Close-up of precise lash lift and tint application in our salon",
+      src: "/images/lash_lift_purple.jpg",
+      alt: "Close-up of precise lash lift and tint application in our salon with protective shield",
       caption: "Professional lash lift service",
       width: 900,
-      height: 680,
+      height: 600,
     },
     {
       src: "/images/lash_before_after.jpg",
@@ -18,11 +18,11 @@ export function GalleryGrid() {
       height: 1200,
     },
     {
-      src: "/images/stock-henna-application.webp",
-      alt: "Detailed henna design being applied onto hand by a beauty artist",
+      src: "/images/henna_new.jpg",
+      alt: "Beautiful woman showcasing elegant henna hand designs",
       caption: "Elegant henna hand designs",
       width: 900,
-      height: 680,
+      height: 1125,
     },
     {
       src: "/images/stock-brow-styling.webp",
@@ -38,13 +38,7 @@ export function GalleryGrid() {
       width: 900,
       height: 680,
     },
-    {
-      src: "/images/lash_lift_purple.jpg",
-      alt: "Close-up of precise lash lift and tint application in our salon",
-      caption: "Professional lash application",
-      width: 900,
-      height: 680,
-    },
+
     {
       src: "/images/stock-threading.webp",
       alt: "A professional esthetician performing precise thread hair removal on client's eyebrows",

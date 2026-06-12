@@ -167,7 +167,7 @@ export default function Home() {
             src={stockPhotos.lashes.src}
             alt={stockPhotos.lashes.alt}
             width={900}
-            height={680}
+            height={600}
             loading="eager"
             sizes="(max-width: 900px) 100vw, 38vw"
           />

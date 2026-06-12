@@ -39,7 +39,7 @@ export const stockPhotos = {
     alt: "Professional eyebrow threading service performed with precise detail",
   },
   lashes: {
-    src: "/images/lash_lift_new.jpg",
+    src: "/images/lash_lift_purple.jpg",
     alt: "Professional lash lift and tint enhancement",
   },
   makeup: {
@@ -47,8 +47,8 @@ export const stockPhotos = {
     alt: "Professional bridal and event makeup application",
   },
   henna: {
-    src: "/images/stock-henna-application.webp",
-    alt: "Henna design being applied by hand for a detailed beauty service",
+    src: "/images/henna_new.jpg",
+    alt: "Beautiful woman showcasing elegant henna hand designs",
   },
   facial: {
     src: "/images/stock-facial-massage.webp",
@@ -192,7 +192,7 @@ export const menuGroups = [
     title: "Henna",
     items: [
       ["Bridal Henna", "$350 & Up"],
-      ["Party Henna", "$150 & Up"],
+      ["Party Henna", "$15 & Up"],
     ],
   },
 ];

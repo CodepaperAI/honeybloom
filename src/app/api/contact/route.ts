@@ -2,9 +2,8 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { contact } from "@/lib/site";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request: Request) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
   try {
     const body = await request.json();
     const { name, email, phone, service, message } = body;

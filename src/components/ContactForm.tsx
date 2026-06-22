@@ -1,22 +1,53 @@
+"use client";
+
+import { useState } from "react";
 import { Send } from "lucide-react";
-import { contact, services } from "@/lib/site";
+import { services } from "@/lib/site";
 
 export function ContactForm() {
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("submitting");
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      service: formData.get("service"),
+      message: formData.get("message"),
+    };
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) throw new Error("Failed to send");
+      setStatus("success");
+      (e.target as HTMLFormElement).reset();
+    } catch (error) {
+      setStatus("error");
+    }
+  }
+
   return (
     <form
-      action={`mailto:${contact.email}`}
       className="contact-form"
-      encType="text/plain"
-      method="post"
+      onSubmit={handleSubmit}
       aria-label="Contact form"
     >
       <label>
         <span>Name</span>
-        <input name="name" type="text" autoComplete="name" />
+        <input name="name" type="text" autoComplete="name" required />
       </label>
       <label>
         <span>Email</span>
-        <input name="email" type="email" autoComplete="email" />
+        <input name="email" type="email" autoComplete="email" required />
       </label>
       <label>
         <span>Phone</span>
@@ -26,19 +57,30 @@ export function ContactForm() {
         <span>Service interest</span>
         <select name="service">
           {services.map((service) => (
-            <option key={service.title}>{service.title}</option>
+            <option key={service.title} value={service.title}>{service.title}</option>
           ))}
         </select>
       </label>
       <label className="contact-form-message">
         <span>Message</span>
-        <textarea name="message" rows={4} />
+        <textarea name="message" rows={4} required />
       </label>
-      <button className="button button-primary" type="submit">
+      
+      {status === "success" && (
+        <p style={{ color: "#32573f", fontSize: "0.875rem", marginBottom: "1rem", fontWeight: 500 }}>
+          Your inquiry has been sent! We will be in touch soon.
+        </p>
+      )}
+      {status === "error" && (
+        <p style={{ color: "red", fontSize: "0.875rem", marginBottom: "1rem", fontWeight: 500 }}>
+          Something went wrong. Please try again or contact us directly.
+        </p>
+      )}
+
+      <button className="button button-primary" type="submit" disabled={status === "submitting"}>
         <Send aria-hidden="true" size={17} />
-        Send inquiry
+        {status === "submitting" ? "Sending..." : "Send inquiry"}
       </button>
     </form>
   );
 }
-

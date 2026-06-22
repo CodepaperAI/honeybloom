@@ -34,7 +34,7 @@ npm install
 Create a local environment file:
 
 ```bash
-cp .env.example .env.local
+cp .env.example .env.local  `
 ```
 
 For local development, use:

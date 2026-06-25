@@ -349,6 +349,7 @@ export const pages = [
   { path: "/faqs", priority: 0.75 },
   { path: "/booking", priority: 0.9 },
   { path: "/contact", priority: 0.9 },
+  { path: "/blog", priority: 0.7 },
 ];
 
 export function businessJsonLd() {

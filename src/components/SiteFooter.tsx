@@ -21,6 +21,7 @@ export function SiteFooter() {
             {item.label}
           </Link>
         ))}
+        <Link href="/blog">Blog</Link>
       </nav>
       <p>Professional beauty care, brow artistry, skincare, lash services, waxing, threading, tinting, and henna.</p>
     </footer>

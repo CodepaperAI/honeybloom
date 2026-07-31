@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { FaqList } from "@/components/FaqList";
+import { getByFamily, toSummary } from "@/data/landingPages";
 import { faqJsonLd } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -13,6 +14,8 @@ export const metadata: Metadata = {
 };
 
 export default function FaqsPage() {
+  const guides = getByFamily("guide").map(toSummary);
+
   return (
     <main id="main">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd()) }} />
@@ -30,6 +33,30 @@ export default function FaqsPage() {
           </Link>
         </div>
       </section>
+
+      {/* The longer questions — what a treatment costs, which of two options to
+          pick — are answered in full on the guide pages. This is the only place
+          on the original site where they have a natural home, and without it
+          the guides had no contextual route in from anywhere. */}
+      {guides.length > 0 && (
+        <section className="section faq-guides">
+          <div className="section-heading">
+            <p className="eyebrow">Go deeper</p>
+            <h2>Detailed guides</h2>
+            <p>Longer answers to the questions that need more than a paragraph.</p>
+          </div>
+          <div className="detail-grid">
+            {guides.map((guide) => (
+              <article className="detail-card" key={guide.slug}>
+                <h3>
+                  <Link href={guide.pathname}>{guide.h1}</Link>
+                </h3>
+                <p>{guide.metaDescription}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
     </main>
   );
 }

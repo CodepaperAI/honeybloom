@@ -1,6 +1,10 @@
 import Image from "next/image";
-import { BadgeCheck, Flower2, Heart, Sparkles } from "lucide-react";
+import Link from "next/link";
+import { BadgeCheck, Flower2, Heart, Sparkles, ArrowRight } from "lucide-react";
 import { services } from "@/lib/site";
+import { landingPathForService } from "@/data/landingPages";
+
+// Server component — safe to import the registry here. See SiteFooter.tsx.
 
 const icons = {
   sparkles: Sparkles,
@@ -14,6 +18,8 @@ export function ServiceCards({ limit }: { limit?: number }) {
     <div className="service-grid">
       {services.slice(0, limit).map((service) => {
         const Icon = icons[service.icon as keyof typeof icons];
+        // Null while a landing page is held, so no dead link is rendered.
+        const href = landingPathForService(service.title);
         return (
           <article className={["service-card", service.featured && "service-card-featured"].filter(Boolean).join(" ")} key={service.title}>
             <figure className="service-card-media">
@@ -35,6 +41,12 @@ export function ServiceCards({ limit }: { limit?: number }) {
               </span>
               <h3>{service.title}</h3>
               <p>{service.text}</p>
+              {href && (
+                <Link className="detail-card-link" href={href}>
+                  Details and pricing
+                  <ArrowRight aria-hidden="true" size={15} />
+                </Link>
+              )}
             </div>
           </article>
         );

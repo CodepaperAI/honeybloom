@@ -2605,6 +2605,357 @@ main > .section:first-of-type {
   padding: 0.35rem 0.85rem;
 }
 
+/* ==========================================================================
+   Landing pages (service / guide / area)
+   Reuses .section, .detail-grid, .detail-card, .faq-list and .button styles
+   above — only the layout pieces unique to these pages are defined here.
+   ========================================================================== */
+
+.landing-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+
+/* min-height, not a fixed height: a three-line H1 must push the hero taller
+   rather than disappear underneath the overlay navbar. */
+.landing-hero-copy {
+  min-height: 0;
+}
+
+.landing-hero h1 {
+  margin-bottom: var(--space-md);
+}
+
+.landing-intro {
+  font-size: var(--text-lg);
+  max-width: 42rem;
+}
+
+.landing-address {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  color: var(--color-muted);
+  margin-top: var(--space-md);
+}
+
+.landing-hero-photo img,
+.landing-section-photo img {
+  width: 100%;
+  border-radius: var(--radius-card);
+  display: block;
+  /* Fixed aspect ratio with object-fit, not height:auto. The source photos are
+     a mix of portrait and landscape; letting a tall portrait set the row height
+     leaves a large empty gap beside a short paragraph. */
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.landing-section-photo-unused {
+  position: sticky;
+  top: var(--space-2xl);
+}
+
+/* Footer link columns for service, guide and area pages. The uppercase
+   micro-styling on .site-footer a is inherited; column links are set back to
+   sentence case because a stack of uppercase multi-word labels is hard to scan. */
+/* Contextual link from an existing service card into its landing page. */
+.detail-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: var(--space-sm);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--color-emerald);
+  text-decoration: none;
+}
+
+.detail-card-link:hover {
+  text-decoration: underline;
+}
+
+.detail-card-link svg {
+  transition: transform var(--dur-fast) var(--ease-in);
+}
+
+.detail-card-link:hover svg {
+  transform: translateX(2px);
+}
+
+/* Identity block on the left, link columns filling the right. */
+.footer-top {
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.85fr) 2fr;
+  gap: var(--space-2xl) var(--space-3xl);
+  align-items: start;
+}
+
+.footer-identity {
+  display: grid;
+  gap: var(--space-md);
+  align-content: start;
+}
+
+.footer-logo-link {
+  display: block;
+  min-height: 0;
+  padding: 0;
+}
+
+.footer-tagline {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--color-muted);
+  max-width: 24rem;
+  margin: 0;
+}
+
+.footer-contact {
+  display: grid;
+  gap: 0.35rem;
+  font-style: normal;
+}
+
+.footer-contact a,
+.footer-contact span {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  font-size: 0.88rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+  line-height: 1.45;
+  min-height: 0;
+  color: var(--color-muted);
+}
+
+.footer-contact svg {
+  flex-shrink: 0;
+  margin-top: 0.2em;
+}
+
+/* space-between spreads the groups across the right-hand area instead of
+   packing them against its left edge. */
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-lg) var(--space-2xl);
+}
+
+.footer-column {
+  min-width: 11rem;
+}
+
+/* Wide enough for two readable sub-columns; without the min-width the two
+   columns would each be ~5rem and wrap every label.
+   min() is load-bearing: a bare 26rem (416px) is wider than a 390px phone
+   viewport and forced horizontal overflow on EVERY page of the site, since the
+   footer is in the root layout. The columns:1 media query below does not undo a
+   min-width, so the cap has to be on this property. */
+.footer-column-split {
+  min-width: min(26rem, 100%);
+}
+
+.footer-column-split ul {
+  columns: 2;
+  column-gap: var(--space-2xl);
+}
+
+.footer-column li {
+  break-inside: avoid;
+}
+
+@media (max-width: 900px) {
+  /* Single column below the breakpoint. minmax(15rem, …) on the grid would
+     otherwise keep forcing a two-up layout into a phone viewport. */
+  .footer-top {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-columns {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 700px) {
+  .footer-column-split ul {
+    columns: 1;
+  }
+}
+
+.footer-column-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  margin-bottom: var(--space-2xs);
+}
+
+/* display:block, not grid — CSS multi-column has no effect on a grid container,
+   so .footer-column-split below would silently do nothing. */
+.footer-column ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+/* .site-footer a sets min-height:40px for tap targets on the main nav row.
+   Inside a dense list that becomes ~40px of leading per item, which is what
+   made nine services read as a sparse full-page column. */
+.footer-column a,
+.footer-column-current {
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.45;
+  min-height: 0;
+  padding: 0.28rem 0;
+  display: block;
+}
+
+/* The current page, rendered as text rather than a self-link. */
+.footer-column-current {
+  color: var(--color-ink);
+  font-weight: 500;
+}
+
+.landing-body {
+  display: grid;
+  gap: var(--space-xl);
+  max-width: 46rem;
+  margin-inline: auto;
+}
+
+.landing-section-body h2 {
+  margin-bottom: var(--space-sm);
+}
+
+.landing-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: var(--space-md);
+}
+
+.landing-gallery-grid img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+  display: block;
+}
+
+.landing-price-table-wrap {
+  /* Wide tables scroll inside their own container so the page body never
+     scrolls horizontally on mobile. */
+  overflow-x: auto;
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+.landing-price-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.landing-price-table th,
+.landing-price-table td {
+  text-align: left;
+  padding: var(--space-sm) var(--space-xs);
+  border-bottom: var(--rule-thin) solid var(--color-line);
+  font-weight: 400;
+}
+
+.landing-price-table td {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.landing-price-note {
+  display: block;
+  color: var(--color-muted);
+  font-size: 0.85em;
+}
+
+.landing-cta {
+  margin-top: var(--space-xl);
+  padding: var(--space-lg);
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  text-align: center;
+}
+
+.landing-cta .booking-actions {
+  justify-content: center;
+}
+
+/* The sticky bar is position:fixed, so it sits on top of whatever is at the
+   bottom of the document — which is the footer. Reserving its height here stops
+   it covering the last line of footer text once a visitor reaches the end. */
+body:has(.landing-sticky-cta) .site-footer {
+  padding-bottom: calc(var(--space-3xl) + 4.5rem);
+}
+
+.landing-sticky-cta {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-paper);
+  border-top: var(--rule-thin) solid var(--color-line);
+  box-shadow: 0 -6px 24px rgb(0 0 0 / 8%);
+}
+
+.landing-sticky-cta-text {
+  font-weight: 500;
+}
+
+.landing-sticky-cta-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.landing-sticky-cta-close {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-muted);
+  padding: 0 var(--space-2xs);
+}
+
+@media (max-width: 900px) {
+  .landing-hero,
+  .landing-section {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-sticky-cta-text {
+    display: none;
+  }
+
+  .landing-sticky-cta-actions {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 .blog-article .section-actions {
   justify-content: flex-start;
 }

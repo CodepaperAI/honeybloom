@@ -59,14 +59,18 @@ export type BlogListResult = {
   };
 };
 
+// Accepts either name. Vercel production has the token under UPLIFT_TOKEN while
+// this code originally read only UPLIFT_API_TOKEN, so getToken() returned null
+// on every production request and the blog silently rendered "Coming soon" —
+// the failure is a console.warn on the server, invisible from the browser.
 function getToken(): string | null {
-  return process.env.UPLIFT_API_TOKEN ?? null;
+  return process.env.UPLIFT_API_TOKEN ?? process.env.UPLIFT_TOKEN ?? null;
 }
 
 async function uplift<T>(path: string): Promise<T | null> {
   const token = getToken();
   if (!token) {
-    console.warn("UPLIFT_API_TOKEN is not set; skipping blog API request.");
+    console.warn("Neither UPLIFT_API_TOKEN nor UPLIFT_TOKEN is set; skipping blog API request.");
     return null;
   }
 

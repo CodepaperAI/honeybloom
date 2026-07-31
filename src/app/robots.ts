@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
+import { siteUrl } from "@/lib/site";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://honeybloombeauty.ca";
+// siteUrl is imported rather than re-declared. This file used to keep its own
+// copy of the origin, which is how robots.txt and the canonicals could drift
+// apart — two constants meant two places to get the domain wrong.
 
 export default function robots(): MetadataRoute.Robots {
   return {

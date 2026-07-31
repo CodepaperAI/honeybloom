@@ -1,11 +1,25 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { Send } from "lucide-react";
 import { services } from "@/lib/site";
 
-export function ContactForm() {
+export interface ContactFormProps {
+  /**
+   * Which page produced this lead. Landing pages pass their own `formSourceId`;
+   * everything else falls back to the pathname, so every page on the site is
+   * attributable without having to touch each call site.
+   *
+   * Without this the inquiry email is identical no matter where it came from,
+   * which makes it impossible to tell which pages actually generate bookings.
+   */
+  sourceId?: string;
+}
+
+export function ContactForm({ sourceId }: ContactFormProps) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const pathname = usePathname();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -18,6 +32,8 @@ export function ContactForm() {
       phone: formData.get("phone"),
       service: formData.get("service"),
       message: formData.get("message"),
+      sourceId: sourceId ?? pathname ?? "unknown",
+      pagePath: pathname ?? "unknown",
     };
 
     try {

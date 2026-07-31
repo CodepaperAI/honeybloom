@@ -1,4 +1,11 @@
-export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://honeybloombeauty.ca";
+// The single source of truth for the site's origin. Canonicals, sitemap.xml,
+// robots.txt and every JSON-LD @id/url are derived from this one value.
+//
+// The fallback must be the LIVE domain. It previously defaulted to the .ca
+// domain, which has no DNS record, so with NEXT_PUBLIC_SITE_URL unset in
+// production every page shipped a canonical pointing at a host that does not
+// resolve — telling Google the real version of each page lived at a dead URL.
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.honeybloombeauty.com";
 
 export const contact = {
   businessName: "Honey Bloom Beauty",

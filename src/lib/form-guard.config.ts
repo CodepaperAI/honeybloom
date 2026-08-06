@@ -13,5 +13,6 @@ export const formGuardConfig: FormGuardConfig = {
   // Asserted server-side against what Turnstile reports, so a token minted for
   // this form cannot be replayed against another one.
   action: "contact",
-  businessPhone: contact.phone,
+  contactLabel: contact.phone,
+  contactHref: contact.phoneHref,
 };

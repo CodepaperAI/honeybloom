@@ -35,8 +35,18 @@ export interface FormGuardConfig {
    */
   action: string;
 
-  /** Surfaced to the visitor whenever a check fails, so a real person has a way through. */
-  businessPhone: string;
+  /**
+   * A way to reach the business, surfaced whenever a check fails so a real
+   * person blocked by the guard is never left at a dead end.
+   *
+   * Not necessarily a phone number: Inkblend's site config carries a
+   * placeholder in the reserved 555-01XX fictional range, so pointing blocked
+   * customers at it would be worse than useless. Each site supplies whatever
+   * channel is actually monitored.
+   */
+  contactLabel: string;
+  /** `tel:`, `mailto:`, or an https link — whatever `contactLabel` refers to. */
+  contactHref: string;
 
   /**
    * Accept submissions carrying no Turnstile token.

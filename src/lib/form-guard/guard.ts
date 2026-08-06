@@ -45,7 +45,7 @@ export interface RunGuardsInput {
 }
 
 export const verificationFailedMessage = (config: FormGuardConfig) =>
-  `We couldn't verify that submission. Please refresh the page and try again, or call us at ${config.businessPhone}.`;
+  `We couldn't verify that submission. Please refresh the page and try again, or reach us at ${config.contactLabel}.`;
 
 export const runGuards = async ({
   headers,

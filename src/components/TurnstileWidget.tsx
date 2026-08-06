@@ -10,8 +10,8 @@ import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "re
  * exactly once no matter how many forms mount.
  *
  * Ported from Palacio (PalacioNext-Js @ d219482). Changed here: the fallback
- * phone number and the `action` label are props rather than hardcoded, and an
- * expired challenge now says so instead of silently disabling the submit button.
+ * contact and the `action` label are props rather than hardcoded, and a failed
+ * or expired challenge says so instead of silently disabling the submit button.
  *
  * No npm package — this is ~170 lines against Cloudflare's own script, which is
  * why adding the guard to a site costs zero new dependencies.
@@ -86,8 +86,13 @@ interface TurnstileWidgetProps {
   siteKey: string;
   /** Must match the `action` in the site's form-guard config — it is asserted server-side. */
   action: string;
-  /** Shown in the fallback copy so a blocked visitor still has a way to reach the business. */
-  businessPhone: string;
+  /**
+   * Shown in the fallback copy so a blocked visitor still has a way to reach
+   * the business. Not assumed to be a phone number — some sites' only
+   * monitored channel is email.
+   */
+  contactLabel: string;
+  contactHref: string;
   onVerify: (token: string) => void;
   /** Fired when the challenge errors, expires, or the script cannot load. */
   onUnavailable: () => void;
@@ -95,11 +100,11 @@ interface TurnstileWidgetProps {
   className?: string;
 }
 
-/** Digits only, for a tel: href. */
-const telHref = (phone: string) => `tel:${phone.replace(/[^\d+]/g, "")}`;
-
 const TurnstileWidget = forwardRef<TurnstileHandle, TurnstileWidgetProps>(
-  ({ siteKey, action, businessPhone, onVerify, onUnavailable, theme = "light", className }, ref) => {
+  (
+    { siteKey, action, contactLabel, contactHref, onVerify, onUnavailable, theme = "light", className },
+    ref,
+  ) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const widgetIdRef = useRef<string | null>(null);
     /**
@@ -108,7 +113,7 @@ const TurnstileWidget = forwardRef<TurnstileHandle, TurnstileWidgetProps>(
      * Cloudflare error 110200. The challenge never renders, so the token stays
      * empty and the submit button stays disabled — previously with nothing on
      * screen to explain why. A misconfigured widget must not read as a dead
-     * button; the visitor gets a reason and a phone number.
+     * button; the visitor gets a reason and a way to reach the business.
      */
     const [status, setStatus] = useState<"ok" | "load-failed" | "errored" | "expired">("ok");
 
@@ -150,7 +155,7 @@ const TurnstileWidget = forwardRef<TurnstileHandle, TurnstileWidgetProps>(
             },
             // Fires on a misconfigured widget (wrong hostname), a blocked
             // challenges.cloudflare.com, or a network fault. Nothing the visitor
-            // can retry their way out of, so say so and give them the phone.
+            // can retry their way out of, so say so and give them a way through.
             "error-callback": () => {
               setStatus("errored");
               onUnavailableRef.current();
@@ -184,11 +189,11 @@ const TurnstileWidget = forwardRef<TurnstileHandle, TurnstileWidgetProps>(
       };
     }, [siteKey, action, theme]);
 
-    const callUs = (
+    const reachUs = (
       <>
-        or call us at{" "}
-        <a href={telHref(businessPhone)} className="underline">
-          {businessPhone}
+        or reach us at{" "}
+        <a href={contactHref} className="underline">
+          {contactLabel}
         </a>
       </>
     );
@@ -197,7 +202,7 @@ const TurnstileWidget = forwardRef<TurnstileHandle, TurnstileWidgetProps>(
     if (status === "load-failed") {
       return (
         <p className="form-guard-error">
-          The security check could not load. Please refresh the page, {callUs}.
+          The security check could not load. Please refresh the page, {reachUs}.
         </p>
       );
     }
@@ -209,7 +214,7 @@ const TurnstileWidget = forwardRef<TurnstileHandle, TurnstileWidgetProps>(
         {status === "errored" ? (
           <p className="form-guard-error">
             The security check is unavailable, so this form can&rsquo;t be submitted right now.
-            Please try refreshing, {callUs}.
+            Please try refreshing, {reachUs}.
           </p>
         ) : null}
         {status === "expired" ? (

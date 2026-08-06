@@ -145,7 +145,8 @@ export function ContactForm({ sourceId }: ContactFormProps) {
           ref={turnstileRef}
           siteKey={TURNSTILE_SITE_KEY}
           action={formGuardConfig.action}
-          businessPhone={formGuardConfig.businessPhone}
+          contactLabel={formGuardConfig.contactLabel}
+          contactHref={formGuardConfig.contactHref}
           onVerify={setTurnstileToken}
           onUnavailable={() => setTurnstileToken("")}
         />

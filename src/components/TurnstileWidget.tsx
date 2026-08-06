@@ -102,8 +102,15 @@ const TurnstileWidget = forwardRef<TurnstileHandle, TurnstileWidgetProps>(
   ({ siteKey, action, businessPhone, onVerify, onUnavailable, theme = "light", className }, ref) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const widgetIdRef = useRef<string | null>(null);
-    const [loadFailed, setLoadFailed] = useState(false);
-    const [expired, setExpired] = useState(false);
+    /**
+     * "errored" covers the case that actually bit us in production: a widget
+     * whose hostname list does not include the site's domain fails with
+     * Cloudflare error 110200. The challenge never renders, so the token stays
+     * empty and the submit button stays disabled — previously with nothing on
+     * screen to explain why. A misconfigured widget must not read as a dead
+     * button; the visitor gets a reason and a phone number.
+     */
+    const [status, setStatus] = useState<"ok" | "load-failed" | "errored" | "expired">("ok");
 
     // Held in refs so re-renders never force the widget to tear down and
     // re-render, which would discard a token the visitor already solved.
@@ -116,7 +123,7 @@ const TurnstileWidget = forwardRef<TurnstileHandle, TurnstileWidgetProps>(
       if (widgetIdRef.current && window.turnstile) {
         window.turnstile.reset(widgetIdRef.current);
       }
-      setExpired(false);
+      setStatus("ok");
     };
 
     useImperativeHandle(ref, () => ({ reset: resetWidget }));
@@ -138,26 +145,32 @@ const TurnstileWidget = forwardRef<TurnstileHandle, TurnstileWidgetProps>(
             // light-coloured site.
             theme,
             callback: (token) => {
-              setExpired(false);
+              setStatus("ok");
               onVerifyRef.current(token);
             },
-            "error-callback": () => onUnavailableRef.current(),
+            // Fires on a misconfigured widget (wrong hostname), a blocked
+            // challenges.cloudflare.com, or a network fault. Nothing the visitor
+            // can retry their way out of, so say so and give them the phone.
+            "error-callback": () => {
+              setStatus("errored");
+              onUnavailableRef.current();
+            },
             // Tokens expire after ~5 minutes. A form left open — a modal, a long
             // page — hits this, and without the visible notice below the submit
             // button just goes dead with no explanation.
             "expired-callback": () => {
-              setExpired(true);
+              setStatus("expired");
               onUnavailableRef.current();
             },
             "timeout-callback": () => {
-              setExpired(true);
+              setStatus("expired");
               onUnavailableRef.current();
             },
           });
         })
         .catch(() => {
           if (cancelled) return;
-          setLoadFailed(true);
+          setStatus("load-failed");
           onUnavailableRef.current();
         });
 
@@ -171,22 +184,35 @@ const TurnstileWidget = forwardRef<TurnstileHandle, TurnstileWidgetProps>(
       };
     }, [siteKey, action, theme]);
 
-    if (loadFailed) {
+    const callUs = (
+      <>
+        or call us at{" "}
+        <a href={telHref(businessPhone)} className="underline">
+          {businessPhone}
+        </a>
+      </>
+    );
+
+    // The script never loaded, so the container would stay empty forever.
+    if (status === "load-failed") {
       return (
         <p className="form-guard-error">
-          The security check could not load. Please refresh the page, or call us at{" "}
-          <a href={telHref(businessPhone)} className="underline">
-            {businessPhone}
-          </a>
-          .
+          The security check could not load. Please refresh the page, {callUs}.
         </p>
       );
     }
 
     return (
       <div className={className}>
+        {/* Kept mounted on error so a transient fault can still recover. */}
         <div ref={containerRef} />
-        {expired ? (
+        {status === "errored" ? (
+          <p className="form-guard-error">
+            The security check is unavailable, so this form can&rsquo;t be submitted right now.
+            Please try refreshing, {callUs}.
+          </p>
+        ) : null}
+        {status === "expired" ? (
           <p className="form-guard-error">
             The security check expired.{" "}
             <button type="button" onClick={resetWidget} className="underline">
